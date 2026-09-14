@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Veículos Alugados e Não Entregues</title>
+</h:head>
+
+<h:body>
+    <h1>Veículos Alugados e Não Entregues</h1>
+    <p:button value="Voltar ao Menu" outcome="index.xhtml" icon="pi pi-home" style="margin-bottom: 15px;" />
+
+    <p:panel>
+        <p:dataTable value="#{aluguelBean.listaNaoEntregues}" var="a">
+
+            <p:column headerText="Veículo">
+                #{a.veiculo.placa} - #{a.veiculo.modelo}
+            </p:column>
+
+            <p:column headerText="Cliente">
+                #{a.cliente.nomeCliente}
+            </p:column>
+
+            <p:column headerText="Data Aluguel">
+                <h:outputText value="#{a.dataAluguel}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Data Entrega Prevista">
+                <h:outputText value="#{a.dataEntrega}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </p:column>
+
+        </p:dataTable>
+    </p:panel>
+
+</h:body>
+</html>

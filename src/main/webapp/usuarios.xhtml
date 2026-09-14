@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Cadastro de Usuários</title>
+</h:head>
+
+<h:body>
+    <h1>Cadastro de Usuários</h1>
+    <p:button value="Voltar ao Menu" outcome="index.xhtml" icon="pi pi-home" style="margin-bottom: 15px;" />
+
+    <h:form>
+        <p:panel header="Dados do Usuário">
+            <p:panelGrid columns="2" layout="grid">
+
+                <p:outputLabel value="Nome:" />
+                <p:inputText value="#{usuarioBean.usuario.nome}" />
+
+                <p:outputLabel value="Cargo:" />
+                <p:inputText value="#{usuarioBean.usuario.cargo}" />
+
+                <p:outputLabel value="Login:" />
+                <p:inputText value="#{usuarioBean.usuario.login}" />
+
+                <p:outputLabel value="Senha:" />
+                <p:password value="#{usuarioBean.usuario.senha}" feedback="false" />
+
+                <p:outputLabel value="E-mail:" />
+                <p:inputText value="#{usuarioBean.usuario.email}" />
+
+            </p:panelGrid>
+
+            <p:commandButton value="Salvar" action="#{usuarioBean.salvar()}" icon="pi pi-save" style="margin-top: 10px;" ajax="false" />
+        </p:panel>
+
+        <p:panel header="Usuários Cadastrados" style="margin-top: 20px;">
+            <p:dataTable value="#{usuarioBean.listaUsuarios}" var="u">
+
+                <p:column headerText="Nome">
+                    #{u.nome}
+                </p:column>
+
+                <p:column headerText="Cargo">
+                    #{u.cargo}
+                </p:column>
+
+                <p:column headerText="Login">
+                    #{u.login}
+                </p:column>
+
+                <p:column headerText="E-mail">
+                    #{u.email}
+                </p:column>
+
+                <p:column headerText="Ação">
+                    <p:commandButton value="Editar" action="#{usuarioBean.editar(u)}" icon="pi pi-pencil" style="margin-right: 5px;" ajax="false" />
+                    <p:commandButton value="Excluir" action="#{usuarioBean.excluir(u)}" icon="pi pi-trash" ajax="false" />
+                </p:column>
+
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+
+</h:body>
+</html>

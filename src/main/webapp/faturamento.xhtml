@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Consulta de Faturamento</title>
+</h:head>
+
+<h:body>
+    <h1>Consulta de Faturamento por Período</h1>
+    <p:button value="Voltar ao Menu" outcome="index.xhtml" icon="pi pi-home" style="margin-bottom: 15px;" />
+
+    <h:form>
+        <p:panel header="Período">
+            <p:panelGrid columns="2" layout="grid">
+
+                <p:outputLabel value="Data Início:" />
+                <p:calendar value="#{faturamentoBean.dataInicio}" pattern="dd/MM/yyyy" />
+
+                <p:outputLabel value="Data Fim:" />
+                <p:calendar value="#{faturamentoBean.dataFim}" pattern="dd/MM/yyyy" />
+
+            </p:panelGrid>
+
+            <p:commandButton value="Consultar" action="#{faturamentoBean.consultar()}" icon="pi pi-search" style="margin-top: 10px;" ajax="false" />
+
+            <h:panelGroup rendered="#{faturamentoBean.resultado != null}">
+                <h2>
+                    Faturamento no período: R$
+                    <h:outputText value="#{faturamentoBean.resultado}">
+                        <f:convertNumber pattern="#,##0.00" />
+                    </h:outputText>
+                </h2>
+            </h:panelGroup>
+        </p:panel>
+    </h:form>
+
+</h:body>
+</html>
